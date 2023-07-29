@@ -4,7 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const fetchWallet = async (body) => {
     try {
         if (!body?.user_id) throw new Error("User id is required");
-        const result = await WalletModal.findOne({ user_id: new ObjectId(body?.user_id) }).sort({ createdAt: -1 });
+        const result = await WalletModal.findOne({ user_id: new ObjectId(body?.user_id) }).sort({ created_at: -1 });
         if (result) return result;
         throw new Error("Wallet details not found for this user!");
     } catch (error) {
@@ -42,7 +42,7 @@ const walletBalance = async (req, res) => {
 const fetchTransaction = async (req, res) => {
     try {
         if (!req.params?._id) throw new Error("Transaction id is required");
-        const result = await WalletModal.findOne({ _id: new ObjectId(req.params?._id) });
+        const result = await WalletModal.findOne({ _id: new ObjectId(req.params?._id) }).select(['amount', 'type', 'balance', 'description', 'created_at']);
         return res.send({
             success: true,
             message: 'Transaction fetched successfully!',
@@ -60,7 +60,7 @@ const fetchTransactions = async (req, res) => {
     try {
         const limit = req.query?.limit ? parseInt(req.query?.limit) : 10;
         const skip = req.query?.skip ? parseInt(req.query?.skip) : 0;
-        const result = await WalletModal.find({ user_id: new ObjectId(req.params?.user_id) }).select('balance').sort({ createdAt: -1 }).limit(limit).skip(skip * limit);
+        const result = await WalletModal.find({ user_id: new ObjectId(req.params?.user_id) }).select(['amount', 'type', 'balance', 'description', 'created_at']).sort({ created_at: -1 }).limit(limit).skip(skip * limit);
         return res.send({
             success: true,
             message: 'Transactions fetched successfully!',

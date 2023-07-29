@@ -24,8 +24,20 @@ module.exports = mongoose.model(
       type: String,
       default: null,
     },
+    created_at: {
+      type: Date,
+      default: function () {
+        return Date.now();
+      }
+    },
+    updated_at: {
+      type: Date,
+      default: function () {
+        return Date.now();
+      }
+    }
   }, {
-    timestamps: true,
+    timestamps: false,
     collection: 'Wallet',
   })
 );

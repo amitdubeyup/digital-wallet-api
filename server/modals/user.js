@@ -6,17 +6,19 @@ module.exports = mongoose.model(
   new Schema({
     name: {
       type: String,
-      required: true
+      required: true,
+      trim: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      trim: true,
     },
     mobile: {
       type: Number,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
@@ -27,8 +29,20 @@ module.exports = mongoose.model(
       required: true,
       default: 1,
     },
+    created_at: {
+      type: Date,
+      default: function () {
+        return Date.now();
+      }
+    },
+    updated_at: {
+      type: Date,
+      default: function () {
+        return Date.now();
+      }
+    }
   }, {
-    timestamps: true,
+    timestamps: false,
     collection: 'User',
   })
 );
