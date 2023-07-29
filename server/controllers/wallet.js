@@ -3,12 +3,12 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const fetchWallet = async (body) => {
     try {
-        if (!body?.user_id) throw new Error("User id is required");
+        if (!body?.user_id) throw new Error('User id is required.');
         const result = await WalletModal.findOne({ user_id: new ObjectId(body?.user_id) }).sort({ created_at: -1 });
         if (result) return result;
-        throw new Error("Wallet details not found for this user!");
+        throw new Error('Wallet details not found for this user.');
     } catch (error) {
-        throw new Error(error?.message ?? 'Unable to fetch wallet balance!');
+        throw new Error(error?.message ?? 'Unable to fetch wallet balance.');
     }
 }
 
@@ -17,7 +17,7 @@ const updateWallet = async (body) => {
         const result = await new WalletModal(body).save();
         return result;
     } catch (error) {
-        throw new Error(error?.message ?? 'Unable to initialize wallet!');
+        throw new Error(error?.message ?? 'Unable to initialize wallet.');
     }
 }
 
@@ -26,7 +26,7 @@ const walletBalance = async (req, res) => {
         const result = await fetchWallet(req.params)
         return res.send({
             success: true,
-            message: 'Balance fetched successfully!',
+            message: 'Balance fetched successfully.',
             data: {
                 balance: result?.balance
             }
@@ -34,24 +34,24 @@ const walletBalance = async (req, res) => {
     } catch (error) {
         return res.send({
             success: false,
-            message: error?.message ?? 'Unable to fetch balance!'
+            message: error?.message ?? 'Unable to fetch balance.'
         });
     }
 }
 
 const fetchTransaction = async (req, res) => {
     try {
-        if (!req.params?._id) throw new Error("Transaction id is required");
+        if (!req.params?._id) throw new Error('Transaction id is required.');
         const result = await WalletModal.findOne({ _id: new ObjectId(req.params?._id) }).select(['amount', 'type', 'balance', 'description', 'created_at']);
         return res.send({
             success: true,
-            message: 'Transaction fetched successfully!',
+            message: 'Transaction fetched successfully.',
             data: result
         });
     } catch (error) {
         return res.send({
             success: false,
-            message: error?.message ?? 'Unable to fetch wallet!'
+            message: error?.message ?? 'Unable to fetch wallet.'
         });
     }
 }
@@ -63,31 +63,31 @@ const fetchTransactions = async (req, res) => {
         const result = await WalletModal.find({ user_id: new ObjectId(req.params?.user_id) }).select(['amount', 'type', 'balance', 'description', 'created_at']).sort({ created_at: -1 }).limit(limit).skip(skip * limit);
         return res.send({
             success: true,
-            message: 'Transactions fetched successfully!',
+            message: 'Transactions fetched successfully.',
             data: result,
         });
     } catch (error) {
         return res.send({
             success: false,
-            message: error?.message ?? 'Unable to fetch transactions!'
+            message: error?.message ?? 'Unable to fetch transactions.'
         });
     }
 }
 
 const createTransaction = async (req, res) => {
     try {
-        if (!req.params?.user_id) throw new Error("User id is required.");
-        if (!req.body?.amount) throw new Error("Amount is required.");
-        if (isNaN(req.body?.amount)) throw new Error("Amount must be of number type.");
-        if (!req.body?.type) throw new Error("Transaction type is required.");
-        if (!['credit', 'debit'].includes(req.body?.type)) throw new Error("Transaction type must be of credit/debit type.");
+        if (!req.params?.user_id) throw new Error('User id is required.');
+        if (!req.body?.amount) throw new Error('Amount is required.');
+        if (isNaN(req.body?.amount)) throw new Error('Amount must be of number type.');
+        if (!req.body?.type) throw new Error('Transaction type is required.');
+        if (!['credit', 'debit'].includes(req.body?.type)) throw new Error('Transaction type must be of credit/debit type.');
 
         const wallet = await fetchWallet(req.params);
         let balance = parseFloat(wallet?.balance);
-        if (req.body?.type == "credit") {
+        if (req.body?.type == 'credit') {
             balance = balance + parseFloat(req.body?.amount);
         }
-        if (req.body?.type == "debit") {
+        if (req.body?.type == 'debit') {
             balance = balance - parseFloat(req.body?.amount);
         }
         const data = {
@@ -95,18 +95,18 @@ const createTransaction = async (req, res) => {
             amount: parseFloat(req.body?.amount)?.toFixed(4),
             type: req.body?.type,
             balance: balance?.toFixed(4),
-            description: req.body?.type == "credit" ? "Wallet Credited" : "Wallet Debited",
+            description: req.body?.type == 'credit' ? 'Wallet Credited' : 'Wallet Debited',
         };
 
         await updateWallet(data);
         return res.send({
             success: true,
-            message: `Wallet ${req.body?.type}ed successfully!`
+            message: `Wallet ${req.body?.type}ed successfully.`
         });
     } catch (error) {
         return res.send({
             success: false,
-            message: error?.message ?? `Unable to update wallet!`
+            message: error?.message ?? `Unable to update wallet.`
         });
     }
 }

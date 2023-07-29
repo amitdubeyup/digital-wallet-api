@@ -5,9 +5,9 @@ const Controller = require('../controllers/user');
 
 Router.post('/login', Controller.loginUser);
 Router.post('/register', Controller.registerUser);
-Router.post('/fetch', Middleware, Controller.fetchUser);
-Router.post('/update', Middleware, Controller.updateUser);
-Router.post('/remove', Middleware, Controller.removeUser);
+Router.get('/fetch/:_id', Middleware, Controller.fetchUser);
+Router.post('/update/:_id', Middleware, Controller.updateUser);
+Router.get('/remove/:_id', Middleware, Controller.removeUser);
 
 Router.get('/', function (req, res) {
   return res.send({

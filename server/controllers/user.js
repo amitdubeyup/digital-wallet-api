@@ -9,15 +9,15 @@ const loginUser = async (req, res) => {
   try {
     const result = await UserModal.findOne({
       $or: [{
-        email: (req.body?.email)?.trim() ?? "",
+        email: (req.body?.email)?.trim() ?? '',
       },
       {
-        mobile: (req.body?.mobile)?.trim() ?? "",
+        mobile: (req.body?.mobile)?.trim() ?? '',
       }
       ]
     });
     if (result) {
-      const match = await bcrypt.compare((req.body?.password)?.trim() ?? "", result.password);
+      const match = await bcrypt.compare((req.body?.password)?.trim() ?? '', result.password);
       if (match) {
         if (result.status == 1) {
           const payload = {
@@ -34,23 +34,22 @@ const loginUser = async (req, res) => {
           );
           return res.send({
             success: true,
-            message: 'Logged in successfully!',
-            token: token,
-            data: payload
+            message: 'Logged in successfully.',
+            token: token
           });
         } else {
-          throw new Error('Account blocked, Please contact with support administrator!');
+          throw new Error('Account blocked, Please contact with support administrator.');
         }
       } else {
-        throw new Error('Invalid credentials, please try again!');
+        throw new Error('Invalid credentials, please try again.');
       }
     } else {
-      throw new Error('Account does not exists, please register!');
+      throw new Error('Account does not exists, please register.');
     };
   } catch (error) {
     return res.send({
       success: false,
-      message: error?.message ?? 'Unable to login, please try after some time!'
+      message: error?.message ?? 'Unable to login, please try after some time.'
     });
   }
 }
@@ -59,48 +58,42 @@ const registerUser = async (req, res) => {
   try {
     const result = await UserModal.find({
       $or: [{
-        email: (req.body?.email)?.trim() ?? "",
+        email: (req.body?.email)?.trim() ?? '',
       },
       {
-        mobile: (req.body?.mobile)?.trim() ?? "",
+        mobile: (req.body?.mobile)?.trim() ?? '',
       }
       ]
     });
-    if (result.length) throw new Error("The user is already registered, please try with a new account.");
+    if (result.length) throw new Error('The user is already registered, please try with a new account.');
     const password = await bcrypt.hash(req.body.password, 10);
     const user_data = await new UserModal({ ...req.body, password }).save();
-    Controller.updateWallet({ user_id: user_data?._id, description: "Wallet Setup" });
+    Controller.updateWallet({ user_id: user_data?._id, description: 'Wallet Setup' });
     return res.send({
       success: true,
-      message: 'User registered successfully!'
+      message: 'User registered successfully.'
     });
   } catch (error) {
     return res.send({
       success: false,
-      message: error?.message ?? 'Unable to register user!'
+      message: error?.message ?? 'Unable to register user.'
     });
   }
 }
 
 const fetchUser = async (req, res) => {
   try {
-    const result = await UserModal.find(req.body);
+    const result = await UserModal.findOne({ _id: new ObjectId(req.params?._id) }).select(['name', 'email', 'mobile', 'status']);
+    if (!result) throw new Error('User details not found, please try a different account.');
     return res.send({
       success: true,
-      message: 'User fetched successfully!',
-      data: result.map((el) => {
-        return {
-          name: el.name,
-          email: el.email,
-          mobile: el.mobile,
-          status: el.status,
-        }
-      }),
+      message: 'User fetched successfully.',
+      data: result,
     });
   } catch (error) {
     return res.send({
       success: false,
-      message: error?.message ?? 'Unable to fetch user!'
+      message: error?.message ?? 'Unable to fetch user.'
     });
   }
 }
@@ -108,38 +101,32 @@ const fetchUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     delete req.body?.password;
-    await UserModal.findByIdAndUpdate({
-      _id: new ObjectId(req.body._id)
-    }, {
-      $set: req.body
-    }, {
-      new: true
-    });
+    const result = await UserModal.findByIdAndUpdate({ _id: new ObjectId(req.params?._id) }, { $set: req.body }, { new: true });
+    if (!result) throw new Error('User details not found, please try a different account.');
     return res.send({
       success: true,
-      message: 'User updated successfully!'
+      message: 'User updated successfully.'
     });
   } catch (error) {
     return res.send({
       success: false,
-      message: error?.message ?? 'Unable to update user!'
+      message: error?.message ?? 'Unable to update user.'
     });
   }
 }
 
 const removeUser = async (req, res) => {
   try {
-    await UserModal.findByIdAndRemove({
-      _id: new ObjectId(req.body._id)
-    });
+    const result = await UserModal.findByIdAndRemove({ _id: new ObjectId(req.params?._id) });
+    if (!result) throw new Error('User details not found, please try a different account.');
     return res.send({
       success: true,
-      message: 'User removed successfully!',
+      message: 'User removed successfully.',
     });
   } catch (error) {
     return res.send({
       success: false,
-      message: error?.message ?? 'Unable to remove user!'
+      message: error?.message ?? 'Unable to remove user.'
     });
   }
 }
