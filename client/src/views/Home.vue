@@ -9,7 +9,5 @@ const { user } = storeToRefs(authStore);
     <div v-if="user">
         <h1>Hi {{ user.name }}!</h1>
         <p>You're logged in with Vue 3 + Pinia & JWT!!</p>
-        git remote set-url origin git@github.com-personal:amitdubeyup/wallet.git
-        https://github.com/amitdubeyup/wallet
     </div>
 </template>
