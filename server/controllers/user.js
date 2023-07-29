@@ -1,4 +1,5 @@
 const UserModal = require('../modals/user');
+const Controller = require('./wallet');
 const config = require('../config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -67,7 +68,8 @@ const registerUser = async (req, res) => {
     });
     if (result.length) throw new Error("The user is already registered, please try with a new account.");
     const password = await bcrypt.hash(req.body.password, 10);
-    await new UserModal({ ...req.body, password }).save();
+    const user_data = await new UserModal({ ...req.body, password }).save();
+    Controller.updateWallet({ user_id: user_data?._id, description: "Wallet Setup" });
     return res.send({
       success: true,
       message: 'User registered successfully!'
@@ -105,6 +107,7 @@ const fetchUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    delete req.body?.password;
     await UserModal.findByIdAndUpdate({
       _id: new ObjectId(req.body._id)
     }, {

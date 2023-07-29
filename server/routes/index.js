@@ -1,9 +1,11 @@
 const Express = require('express');
 const Router = Express.Router();
 
-const Routes = require('./user.routes');
+const UserRoutes = require('./user.routes');
+const WalletRoutes = require('./wallet.routes');
 
-Router.use('/user', Routes);
+Router.use('/user', UserRoutes);
+Router.use('/wallet', WalletRoutes);
 
 Router.get('/', function (req, res) {
   return res.send({

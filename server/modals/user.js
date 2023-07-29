@@ -10,11 +10,13 @@ module.exports = mongoose.model(
     },
     email: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     mobile: {
       type: Number,
-      required: true
+      required: true,
+      unique: true
     },
     password: {
       type: String,
