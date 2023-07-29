@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import { defineStore } from 'pinia';
 import { router } from '@/router';
 
@@ -16,9 +17,10 @@ export const Store = defineStore({
                 };
                 const result = await this.$axios.post(`${this.$base_url}/user/login`, body, headers);
                 if (result.data?.success) {
-                    this.user = result.data?.data;
+                    const decoded = jwt_decode(result.data?.token);
                     localStorage.setItem('token', result.data?.token);
-                    localStorage.setItem('user', JSON.stringify(result.data?.data));
+                    localStorage.setItem('user', JSON.stringify(decoded?.data));
+                    this.user = decoded?.data;
                     this.$toast.success(result.data?.message);
                     router.push('/home');
                 } else {

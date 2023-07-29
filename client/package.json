@@ -12,6 +12,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "bootstrap-vue": "^2.23.1",
+    "jwt-decode": "^3.1.2",
     "pinia": "^2.1.6",
     "vee-validate": "^4.10.8",
     "vue": "^3.3.4",
