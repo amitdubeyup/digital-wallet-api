@@ -9,7 +9,7 @@
 
   1. NodeJS (Version: 14+)
   2. ExpressJS (Version: 4+)
-  3. VueJS & Vite (Version: 4+)
+  3. VueJS & Vite (Version: 3+)
   4. MongoDB & Mongoose (Version: 5+)
 
 
