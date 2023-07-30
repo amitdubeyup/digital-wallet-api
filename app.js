@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const fs = require("fs");
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -32,6 +33,12 @@ mongoose.set('useFindAndModify', false);
 app.set('superSecret', config.serverSecret);
 
 app.use('/api', apiRoutes);
+
+app.use('/*', function (req, res) {
+  fs.readFile(__dirname + '/client/dist/index.html', 'utf8', (err, text) => {
+    res.send(text);
+  });
+});
 
 app.listen(port);
 console.log(`Wallet is running on http://localhost:${port}`);
