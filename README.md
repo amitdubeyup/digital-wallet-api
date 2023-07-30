@@ -43,7 +43,7 @@ $ npm start
 
 
 
-## REST API
+## REST APIs
 
   There is two part to REST APIs,
 
@@ -53,7 +53,7 @@ $ npm start
 
   The REST APIs to the wallet app are described below.
 
-## Login User
+### Login User
 
 ```bash
   Method: POST
@@ -70,7 +70,7 @@ $ npm start
   }
   ```
 
-## Register User
+### Register User
 
 ```bash
   Method: POST
@@ -88,7 +88,7 @@ $ npm start
   }
  ```
 
-## Fetch Balance
+### Fetch Balance
 
 ```bash
   Method: GET
@@ -103,7 +103,7 @@ $ npm start
   }
  ```
 
-## Fetch Transactions
+### Fetch Transactions
 
 ```bash
   Method: GET
@@ -129,7 +129,7 @@ $ npm start
   }
  ```
 
-## Create Transaction
+### Create Transaction
 
 ```bash
   Method: POST
@@ -147,7 +147,7 @@ $ npm start
  ```
 
 
-### Note 
+## Note
 
   Apart from the above REST APIs, there are more REST APIs for fetching user profiles, updating user profiles, deleting user profiles, fetch single transaction details.
 
