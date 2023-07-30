@@ -67,11 +67,11 @@ store.fetchTransactions();
                             </div>
                         </div>
                     </div>
-                    <div class="col-1">
+                    <div class="col-1" style="margin: 0px;padding: 0px;">
                         <div class="form-group">
                             <button class="btn btn-primary" :disabled="isSubmitting">
                                 <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
-                                Save
+                                Submit
                             </button>
                         </div>
                     </div>
