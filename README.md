@@ -4,14 +4,12 @@
   
 ### Live URL: https://wallet-41nv.onrender.com/
 
-
 ## Tech Stack
 
   1. NodeJS (Version: 14+)
   2. ExpressJS (Version: 4+)
   3. VueJS & Vite (Version: 4+)
   4. MongoDB & Mongoose (Version: 5+)
-
 
 ## Quick Start
 
