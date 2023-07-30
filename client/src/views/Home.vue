@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { storeToRefs } from 'pinia';
 import { Store } from '@/stores';
 const store = Store();
-const { have_prev, have_next, transactions, balance, user } = storeToRefs(store);
+const { apply_filter, have_prev, have_next, transactions, balance, user } = storeToRefs(store);
 
 const schema = Yup.object().shape({
     amount: Yup.number().required('Amount is required'),
@@ -83,11 +83,26 @@ store.fetchTransactions();
                 <thead>
                     <tr>
                         <th>S.N.</th>
-                        <th>Amount</th>
+                        <th>Amount
+                            <span style="cursor: pointer;" @click="store.amountFilter()">
+                                <b-icon-arrow-up v-if="apply_filter.amount"></b-icon-arrow-up>
+                                <b-icon-arrow-down v-else></b-icon-arrow-down>
+                            </span>
+                        </th>
                         <th>Type</th>
-                        <th>Balance</th>
+                        <th>Balance
+                            <span style="cursor: pointer;" @click="store.balanceFilter()">
+                                <b-icon-arrow-up v-if="apply_filter.balance"></b-icon-arrow-up>
+                                <b-icon-arrow-down v-else></b-icon-arrow-down>
+                            </span>
+                        </th>
                         <th>Description</th>
-                        <th>Date</th>
+                        <th>Date
+                            <span style="cursor: pointer;" @click="store.dateFilter()">
+                                <b-icon-arrow-up v-if="apply_filter.date"></b-icon-arrow-up>
+                                <b-icon-arrow-down v-else></b-icon-arrow-down>
+                            </span>
+                        </th>
                     </tr>
                 </thead>
                 <thead>

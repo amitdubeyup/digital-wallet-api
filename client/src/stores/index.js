@@ -9,6 +9,12 @@ export const Store = defineStore({
         have_next: false,
         limit: 10,
         skip: 0,
+        filter: "",
+        apply_filter: {
+            date: true,
+            amount: true,
+            balance: true,
+        },
         transactions: [],
         balance: 0,
         token: localStorage.getItem('token') ?? null,
@@ -87,7 +93,7 @@ export const Store = defineStore({
                         token: this.token
                     }
                 };
-                const result = await this.$axios.get(`${this.$base_url}/wallet/transactions/${this.user._id}?skip=${this.skip}&limit=${this.limit}`, headers);
+                const result = await this.$axios.get(`${this.$base_url}/wallet/transactions/${this.user._id}?skip=${this.skip}&limit=${this.limit}${this.filter}`, headers);
                 if (result.data?.success) {
                     this.have_prev = result?.data?.data?.have_prev ?? false;
                     this.have_next = result?.data?.data?.have_next ?? false;
@@ -135,6 +141,33 @@ export const Store = defineStore({
         next() {
             this.skip = this.skip + 1;
             if (this.skip <= 0) this.skip = 0;
+            this.fetchTransactions();
+        },
+        dateFilter() {
+            this.apply_filter.date = !this.apply_filter.date;
+            if (this.apply_filter.date) {
+                this.filter = `&created_at=-1`;
+            } else {
+                this.filter = `&created_at=1`;
+            }
+            this.fetchTransactions();
+        },
+        amountFilter() {
+            this.apply_filter.amount = !this.apply_filter.amount;
+            if (this.apply_filter.amount) {
+                this.filter = `&amount=-1`;
+            } else {
+                this.filter = `&amount=1`;
+            }
+            this.fetchTransactions();
+        },
+        balanceFilter() {
+            this.apply_filter.balance = !this.apply_filter.balance;
+            if (this.apply_filter.balance) {
+                this.filter = `&balance=-1`;
+            } else {
+                this.filter = `&balance=1`;
+            }
             this.fetchTransactions();
         },
     }
