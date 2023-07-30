@@ -102,7 +102,7 @@ const createTransaction = async (req, res) => {
             amount: parseFloat(req.body?.amount)?.toFixed(4),
             type: req.body?.type,
             balance: balance?.toFixed(4),
-            description: req.body?.type == 'credit' ? 'Wallet Credited' : 'Wallet Debited',
+            description: req.body?.description ?? req.body?.type == 'credit' ? 'Wallet Credited' : 'Wallet Debited',
         };
 
         await updateWallet(data);
