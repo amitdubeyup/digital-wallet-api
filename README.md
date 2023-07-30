@@ -6,10 +6,10 @@ The project "Wallet App" is an app for showing the user & their wallet transacti
 
 ## Tech Stach Used
 
-1. NodeJS
-2. ExpressJS
-3. VueJS
-4. MongoDB
+1. NodeJS (Version: 14+)
+2. ExpressJS (Version: 4+)
+3. VueJS & Vite (Version: 4+)
+4. MongoDB & Mongoose (Version: 5+)
 
 ## Quick Start
 
