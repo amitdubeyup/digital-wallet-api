@@ -4,6 +4,12 @@ The project "Wallet App" is an app for showing the user & their wallet transacti
 
 ## Live URL: https://wallet-41nv.onrender.com
 
+## Tech Stach Used
+
+1. NodeJS
+2. ExpressJS
+3. VueJS
+4. MongoDB
 
 ## Quick Start
 
