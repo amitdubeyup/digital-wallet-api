@@ -4,12 +4,14 @@
   
 ### Live URL: https://wallet-41nv.onrender.com/
 
+
 ## Tech Stack
 
   1. NodeJS (Version: 14+)
   2. ExpressJS (Version: 4+)
   3. VueJS & Vite (Version: 4+)
   4. MongoDB & Mongoose (Version: 5+)
+
 
 ## Quick Start
 
@@ -40,15 +42,16 @@ $ npm start
   View the app at: http://localhost:3000
 
 
+
 ## REST API
 
-  There is two part on rest apis, 
+  There is two part to REST APIs,
 
-  1. User/Wallet Details
+  1. User Details
 
-  2. Wallet Transaction Details
+  2. Wallet Details
 
-  The REST API to the wallet app is described below.
+  The REST APIs to the wallet app are described below.
 
 ## Login User
 
@@ -142,6 +145,7 @@ $ npm start
     "message": "Wallet credited successfully."
   }
  ```
+
 
 ## People
 
