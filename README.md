@@ -129,7 +129,7 @@ $ npm start
   }
  ```
 
-## Create Transactions
+## Create Transaction
 
 ```bash
   Method: POST
@@ -146,6 +146,10 @@ $ npm start
   }
  ```
 
+
+### Note 
+
+  Apart from the above REST APIs, there are more REST APIs for fetching user profiles, updating user profiles, deleting user profiles, fetch single transaction details.
 
 ## People
 
