@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 
 const config = require('./server/config');
 const apiRoutes = require('./server/routes');
-const port = process.env.PORT || 3000;
+const port = 3000;
 const app = express();
 
 app.use(cors());
