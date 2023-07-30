@@ -32,3 +32,39 @@
         width: 40%;
     }
 }
+
+.header {
+    padding: 10px 10px 7px 10px;
+    background: #f6f6fd;
+    box-shadow: 0px 15px 15px -15px #dddde7;
+}
+
+.header-heading {
+    padding-top: 10px;
+}
+
+.mr-2 {
+    margin-right: 10px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.content {
+    margin: 15px;
+    padding: 15px 10px 15px 10px;
+    border: 1px solid #faf3f3;
+    border-radius: 10px;
+}
+
+.content-heading {
+    padding-top: 7px;
+}
+
+.transactions {
+    margin: 15px;
+    padding: 15px 10px 15px 10px;
+    border: 1px solid #faf3f3;
+    border-radius: 10px;
+}

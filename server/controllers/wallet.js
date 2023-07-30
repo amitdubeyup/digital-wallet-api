@@ -60,11 +60,14 @@ const fetchTransactions = async (req, res) => {
     try {
         const limit = req.query?.limit ? parseInt(req.query?.limit) : 10;
         const skip = req.query?.skip ? parseInt(req.query?.skip) : 0;
-        const result = await WalletModal.find({ user_id: new ObjectId(req.params?.user_id) }).select(['amount', 'type', 'balance', 'description', 'created_at']).sort({ created_at: -1 }).limit(limit).skip(skip * limit);
+        const result = await WalletModal.find({ user_id: new ObjectId(req.params?.user_id) }).select(['amount', 'type', 'balance', 'description', 'created_at']).sort({ created_at: -1 }).limit(limit + 1).skip(skip * limit);
+        const have_prev = skip > 0 ? true : false;
+        const have_next = result.length > limit ? true : false;
+        if (result.length > limit) result.pop();
         return res.send({
             success: true,
             message: 'Transactions fetched successfully.',
-            data: result,
+            data: { have_prev, have_next, transactions: result },
         });
     } catch (error) {
         return res.send({

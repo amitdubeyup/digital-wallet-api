@@ -21,6 +21,7 @@ const loginUser = async (req, res) => {
       if (match) {
         if (result.status == 1) {
           const payload = {
+            _id: result._id,
             name: result.name,
             email: result.email,
             mobile: result.mobile,
