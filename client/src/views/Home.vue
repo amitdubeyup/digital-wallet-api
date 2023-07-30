@@ -86,15 +86,17 @@ store.fetchTransactions();
                         <th>Amount</th>
                         <th>Type</th>
                         <th>Balance</th>
+                        <th>Description</th>
                         <th>Date</th>
                     </tr>
                 </thead>
                 <thead>
                     <tr v-for="(transaction, index) in transactions" :key="index">
                         <td>{{ index + 1 }}.</td>
-                        <td>{{ transaction?.amount }}</td>
+                        <td>{{ (transaction?.amount)?.toFixed(4) }}</td>
                         <td class="text-capitalize">{{ transaction?.type }}</td>
-                        <td>{{ transaction?.balance }}</td>
+                        <td>{{ (transaction?.balance)?.toFixed(4) }}</td>
+                        <td>{{ transaction?.description }}</td>
                         <td>{{ new Date(transaction?.created_at).toLocaleString() }}</td>
                     </tr>
                 </thead>
