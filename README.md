@@ -2,7 +2,8 @@
 
   The project "Wallet App" is an app for showing the user & their wallet transaction details. In this app, the user can register & log in, after login home page will be open, where he can view his wallet balance, and transaction & can create credit/debit transactions.
   
-### Live URL: https://wallet-41nv.onrender.com/
+### Live URL App: https://wallet-41nv.onrender.com
+### Live URL Demo: https://vimeo.com/849880730/d11d5ea023
 
 
 ## Tech Stack

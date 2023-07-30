@@ -63,7 +63,6 @@ export const Store = defineStore({
             }
         },
         logout() {
-            this.user = null;
             localStorage.clear();
             router.push('/login');
         },
