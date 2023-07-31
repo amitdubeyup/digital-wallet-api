@@ -24,7 +24,7 @@ pinia.use(({ store }) => {
     store.$toast = useToast();
     store.$token = localStorage.getItem('token') ?? "";
     store.$axios = axios;
-    store.$base_url = "http://localhost:3000/api";
+    store.$base_url = "https://wallet-41nv.onrender.com/api";
 });
 app.use(pinia);
 
