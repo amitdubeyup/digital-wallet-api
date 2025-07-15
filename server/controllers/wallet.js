@@ -1,4 +1,4 @@
-const WalletModal = require('../modals/wallet');
+const WalletModal = require('../models/wallet');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const fetchWallet = async (body) => {

@@ -1,4 +1,4 @@
-const UserModal = require('../modals/user');
+const UserModal = require('../models/user');
 const Controller = require('./wallet');
 const config = require('../config');
 const jwt = require('jsonwebtoken');
