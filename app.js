@@ -14,20 +14,13 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 
 const options = {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
   autoIndex: false,
-  poolSize: 100,
-  bufferMaxEntries: 0,
   connectTimeoutMS: 10000,
   socketTimeoutMS: 45000,
   family: 4,
 };
 
 mongoose.connect(config.database, options);
-mongoose.set('useFindAndModify', false);
 app.set('superSecret', config.serverSecret);
 
 app.use('/api', apiRoutes);
