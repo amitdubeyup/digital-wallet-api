@@ -1,4 +1,4 @@
-# wallet
+# digital-wallet-api
 
 ![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
 
@@ -19,8 +19,8 @@ Assignment for the job!
 
 ```bash
 # Clone the repository
-git clone https://github.com/amitdubeyup/wallet.git
-cd wallet
+git clone https://github.com/amitdubeyup/digital-wallet-api.git
+cd digital-wallet-api
 
 # Install dependencies
 npm install
@@ -54,7 +54,7 @@ npm test
 ## 📁 Project Structure
 
 ```
-wallet/
+digital-wallet-api/
 ├── package.json
 ├── .env.example
 ├── README.md
