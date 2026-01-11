@@ -1,161 +1,75 @@
-# Wallet App
+# wallet
 
-  The project "Wallet App" is an app for showing the user & their wallet transaction details. In this app, the user can register & log in, after login home page will be open, where he can view his wallet balance, and transaction & can create credit/debit transactions.
-  
-### Live App URL: https://wallet-41nv.onrender.com
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
 
-### Live Demo URL: https://vimeo.com/849880730/d11d5ea023
+Assignment for the job!
 
-## Tech Stack
+## 🚀 Tech Stack
 
-  1. NodeJS (Version: 14+)
-  2. ExpressJS (Version: 4+)
-  3. VueJS & Vite (Version: 3+)
-  4. MongoDB & Mongoose (Version: 5+)
+- Express.js
+- MongoDB
 
+## ✨ Features
 
-## Quick Start
+- Modern and scalable architecture
+- Database integration
+- RESTful API endpoints
 
-Clone the repository:
+## 📦 Installation
 
 ```bash
-$ git clone https://github.com/amitdubeyup/wallet
+# Clone the repository
+git clone https://github.com/amitdubeyup/wallet.git
+cd wallet
+
+# Install dependencies
+npm install
 ```
 
-Goto project directory:
+## ⚙️ Configuration
+
+Create a `.env` file in the root directory:
 
 ```bash
-$ cd wallet
+cp .env.example .env
 ```
 
-Install dependencies:
+Update the `.env` file with your configuration values.
+
+## 🚀 Usage
 
 ```bash
-$ npm install
+# Production mode
+npm start
+
+# Run tests
+npm test
 ```
 
-Start the app:
+## 📜 Available Scripts
 
-```bash
-$ npm start
+- `npm run start` - node app.js
+- `npm run test` - App is working fine!
+
+## 📁 Project Structure
+
+```
+wallet/
+├── package.json
+├── .env.example
+├── README.md
 ```
 
-  View the app at: http://localhost:3000
+## 🤝 Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
+## 📄 License
 
-## REST APIs
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-  There is two part to REST APIs,
+## 👤 Author
 
-  1. User Details
+**Amit Dubey**
 
-  2. Wallet Details
-
-  The REST APIs to the wallet app are described below.
-
-### Login User
-
-```bash
-  Method: POST
-  Header: { content-type: application/json }
-  URL: http://localhost:3000/api/user/login
-  Body: {
-    "email": "amitdubey88@gmail.com",
-    "password": "7610002325"
-  }
-  Response: {
-    "success": true,
-    "message": "Logged in successfully.",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
-  }
-  ```
-
-### Register User
-
-```bash
-  Method: POST
-  Header: { content-type: application/json }
-  URL: http://localhost:3000/api/user/register
-  Body: {
-    "name": "Amit Dubey",
-    "email": "amitdubey88@gmail.com",
-    "mobile": "7610002325",
-    "password": "7610002325"
-  },
-  Response: {
-    "success": true,
-    "message": "User registered successfully."
-  }
- ```
-
-### Fetch Balance
-
-```bash
-  Method: GET
-  Header: { content-type: application/json, token: token }
-  URL: http://localhost:3000/api/wallet/balance/${user_id}
-  Response: {
-    "success": true,
-    "message": "Balance fetched successfully.",
-    "data": {
-      "balance": 200
-    }
-  }
- ```
-
-### Fetch Transactions
-
-```bash
-  Method: GET
-  Header: { content-type: application/json, token: token }
-  URL: http://localhost:3000/api/wallet/transactions/${user_id}?skip=0&limit=10&filter=1,
-  Response: {
-    "success": true,
-    "message": "Transactions fetched successfully.",
-    "data": {
-      "have_prev": false,
-      "have_next": true,
-      "transactions": [
-        {
-          "amount": 100,
-          "type": "credit",
-          "balance": 300,
-          "description": "Wallet Credited",
-          "_id": "64c62c7caa6f6e4e0b3a86cf",
-          "created_at": "2023-07-30T09:25:16.742Z"
-        },
-      ]
-    }
-  }
- ```
-
-### Create Transaction
-
-```bash
-  Method: POST
-  Header: { content-type: application/json, token: token }
-  URL: http://localhost:3000/api/wallet/transaction/${user_id}
-  Body: {
-    "amount": "100",
-    "type": "credit",
-    "description": "Wallet Credit"
-  }
-  Response: {
-    "success": true,
-    "message": "Wallet credited successfully."
-  }
- ```
-
-
-## Note
-
-  Apart from the above REST APIs, there are more REST APIs for fetching user profiles, updating user profiles, deleting user profiles, fetch single transaction details.
-
-## People
-
-The lead maintainer is [Amit Dubey](https://github.com/amitdubeyup)
-
-## License
-
-  [MIT](LICENSE)
+- GitHub: [@amitdubeyup](https://github.com/amitdubeyup)
