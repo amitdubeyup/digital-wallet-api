@@ -12,9 +12,6 @@ Backend REST API service built with Express, MongoDB, designed to handle data pe
 ## 🛠️ Tech Stack
 *   **Node.js, MongoDB, Express, Python**
 
-## 👨‍💻 Lead Maintainer
-[@amitdubeyup](https://github.com/amitdubeyup)
-
 ## 📦 Installation
 
 1.  **Clone the repository**:
@@ -29,6 +26,9 @@ Backend REST API service built with Express, MongoDB, designed to handle data pe
     ```bash
     npm start    # or python app.py
     ```
+
+## 👨‍💻 Lead Maintainer
+[@amitdubeyup](https://github.com/amitdubeyup)
 
 ## 📄 License
 This project is licensed under the **MIT License**.
